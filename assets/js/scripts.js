@@ -15,23 +15,31 @@ Version      : 1.0
 		}); 
 		/*END PRELOADER JS*/	
 			
-		/*START MENU JS*/		
-		function windowScroll() {
-			const navbar = document.getElementById("navbar");
-			if (
-				document.body.scrollTop >= 50 ||
-				document.documentElement.scrollTop >= 50
-			) {
+		/*START MENU JS*/
+		var lastScrollTop = 0;
+		var navbar = document.getElementById("navbar");
+
+		window.addEventListener('scroll', function() {
+			var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+			// Tambahkan nav-sticky jika sudah scroll lebih dari 50px
+			if (scrollTop >= 50) {
 				navbar.classList.add("nav-sticky");
 			} else {
 				navbar.classList.remove("nav-sticky");
 			}
-		}
 
-		window.addEventListener('scroll', (ev) => {
-			ev.preventDefault();
-			windowScroll();
-		})	  	
+			// Sembunyikan navbar saat scroll ke bawah, tampilkan saat scroll ke atas
+			if (scrollTop > lastScrollTop && scrollTop > 100) {
+				// Scroll ke bawah
+				navbar.classList.add("nav-hidden");
+			} else {
+				// Scroll ke atas
+				navbar.classList.remove("nav-hidden");
+			}
+
+			lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+		});
 		/*END MENU JS*/
 
 		/*START PROGRESS BAR*/

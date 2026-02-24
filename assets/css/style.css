@@ -302,8 +302,14 @@ strong {
 	z-index: 999;
 	margin-bottom: 0px;
 	border-bottom: none;
-	-webkit-transition: all 0.5s ease-in-out;
-	transition: all 0.5s ease-in-out;
+	-webkit-transition: top 0.4s ease-in-out, all 0.5s ease-in-out;
+	transition: top 0.4s ease-in-out, all 0.5s ease-in-out;
+	top: 0;
+}
+
+/* Sembunyikan navbar saat scroll ke bawah */
+.nav-hidden {
+	top: -80px !important;
 }
 
 .navbar-custom .navbar-toggler {
